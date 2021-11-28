@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "license": "MIT",
+  "npmClient": "yarn",
+  "engines": {
+    "node": "14 || 16"
+  },
+  "useWorkspaces": true,
+  "workspaces": {
+    "packages": [
+      "integrations/*",
+      "packages/*",
+      "plugins/*"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.10",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.2"
+  }
+}
