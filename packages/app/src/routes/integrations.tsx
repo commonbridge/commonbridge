@@ -1,8 +1,13 @@
-export function Integrations(integrations: any) {
+import { CommonBridgeIntegration } from '@commonbridge/integrations'
+import { PageTitle } from '../components/PageTitle'
+
+interface Integrations {
+  integrations: CommonBridgeIntegration[] | undefined
+}
+
+export function Integrations({ integrations }: Integrations) {
   console.log(integrations)
   return (
-    <main style={{ padding: "1rem 0" }}>
-      <h2>Integrations</h2>
-    </main>
+    <PageTitle title="Integrations" />
   )
 }
