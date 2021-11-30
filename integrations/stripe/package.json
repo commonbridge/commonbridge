@@ -24,7 +24,6 @@
   },
   "dependencies": {
     "@commonbridge/integrations": "*",
-    "@hubspot/api-client": "^5.0.0",
     "stripe": "^8.191.0"
   }
 }

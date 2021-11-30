@@ -1,5 +1,5 @@
 export { createPlugin } from './Plugin'
-export {
+export type {
   CommonBridgePlugin,
   PluginConfig,
 } from './types'

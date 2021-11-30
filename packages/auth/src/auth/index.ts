@@ -1,5 +1,5 @@
 export { createAuth } from './Auth'
-export {
+export type {
   AuthConfig,
   CommonBridgeAuth,
 } from './types'
