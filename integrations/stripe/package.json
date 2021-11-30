@@ -1,0 +1,30 @@
+{
+  "name": "@commonbridge/integration-stripe",
+  "version": "0.0.1",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/commonbridge/commonbridge",
+    "directory": "integrations/integration-stripe"
+  },
+  "keywords": [
+    "commonbridge",
+    "common bridge",
+    "stripe"
+  ],
+  "license": "MIT",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "tsc --watch",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@commonbridge/integrations": "*",
+    "@hubspot/api-client": "^5.0.0",
+    "stripe": "^8.191.0"
+  }
+}
