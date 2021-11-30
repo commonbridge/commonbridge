@@ -4,7 +4,21 @@
  * @public
  */
 export type CommonBridgeIntegration = {
-  
+  getId(): string
+  getDetails(): IntegrationDetails
+}
+
+/**
+ * Integration basic details.
+ *
+ * @public
+ */
+export interface IntegrationDetails {
+  id: string
+  name: string
+  description: string
+  url?: string
+  apiDocsUrl?: string
 }
 
 /**
@@ -12,6 +26,6 @@ export type CommonBridgeIntegration = {
  *
  * @public
  */
-export type IntegrationConfig = {
-  id: string
+export interface IntegrationConfig extends IntegrationDetails {
+  client: any
 }

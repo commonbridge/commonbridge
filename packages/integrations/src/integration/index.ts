@@ -1,5 +1,5 @@
 export { createIntegration } from './Integration'
-export {
+export type {
   CommonBridgeIntegration,
   IntegrationConfig,
 } from './types'
