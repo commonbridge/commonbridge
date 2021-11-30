@@ -1,0 +1,42 @@
+repo:
+- '*'
+
+@integrations:
+- integrations/*
+- integrations/**/*
+
+@integrations/hubspot:
+- integrations/hubspot/*
+- integrations/hubspot/**/*
+
+@integrations/stripe:
+- integrations/stripe/*
+- integrations/stripe/**/*
+
+@packages:
+- packages/*
+- packages/**/*
+
+@packages/app:
+- packages/app/*
+- packages/app/**/*
+
+@packages/auth:
+- packages/auth/*
+- packages/auth/**/*
+
+@packages/demo-app:
+- packages/demo-app/*
+- packages/demo-app/**/*
+
+@packages/integrations:
+- packages/integrations/*
+- packages/integrations/**/*
+
+@packages/plugins:
+- packages/plugins/*
+- packages/plugins/**/*
+
+@plugins:
+- plugins/*
+- plugins/**/*
