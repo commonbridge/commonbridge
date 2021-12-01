@@ -1,7 +1,16 @@
-import { PageTitle } from '../components/PageTitle'
+import React from 'react'
+import { PageTitle } from '@commonbridge/components'
 
-export function NotFound() {
+type NotFoundProps = {
+  title?: string
+  children?: React.ReactNode
+}
+
+export function NotFound(props: NotFoundProps) {
+  const { title, children } = props
   return (
-    <PageTitle title="Page Not Found" />
+    <PageTitle title={title || 'Page Not Found'}>
+      {children}
+    </PageTitle>
   )
 }

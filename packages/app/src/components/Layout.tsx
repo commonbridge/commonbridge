@@ -4,7 +4,9 @@ import { Outlet } from 'react-router-dom'
 import NavLink from './NavLink'
 import { RouteLink } from '../types'
 import { styled, createTheme, Theme, ThemeProvider, CSSObject } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import Box from '@mui/material/Box'
+import Paper from '@mui/material/Paper'
 import MuiDrawer from '@mui/material/Drawer'
 import List from '@mui/material/List'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -61,14 +63,16 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 )
 
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-});
-
 const Layout = ({ routes }: { routes: any }) => {
   const [open, setOpen] = useState(false)
+
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)")
+  
+  const darkTheme = createTheme({
+    palette: {
+      mode: prefersDarkMode ? 'dark' : 'light',
+    },
+  })
 
   const toggleDrawer = () => {
     setOpen(!open)
@@ -129,9 +133,11 @@ const Layout = ({ routes }: { routes: any }) => {
             </>
           )}
         </Drawer>
-        <Box component="main" sx={{ flexGrow: 1, p: 3, minWidth: 'calc(100vw - 57px)' }}>
-          <Outlet />
-        </Box>
+        <Paper sx={{ width: '100%' }}>
+          <Box component="main" sx={{ flexGrow: 1, p: 3, width: { xs: 'calc(100vw - 57px)', sm: '100%' } }}>
+            <Outlet />
+          </Box>
+        </Paper>
       </Box>
     </ThemeProvider>
   )

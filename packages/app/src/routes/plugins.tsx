@@ -1,4 +1,4 @@
-import { PageTitle } from '../components/PageTitle'
+import { PageTitle } from '@commonbridge/components'
 
 export function Plugins(plugins: any) {
   console.log(plugins)

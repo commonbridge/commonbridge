@@ -6,9 +6,9 @@ import ListItemText from '@mui/material/ListItemText'
 
 const NavLink = ({ route } : { route: RouteLink }) => {
   return (
-    <ListItem component={Link} to={route.path} button sx={{ minWidth: '40px' }}>
+    <ListItem component={Link} to={route.path} button>
       {route.icon && (
-        <ListItemIcon>
+        <ListItemIcon sx={{ minWidth: '40px' }}>
           {route.icon}
         </ListItemIcon>
       )}

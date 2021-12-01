@@ -1,29 +1,51 @@
-import { CommonBridgeIntegration } from '@commonbridge/integrations'
-import { PageTitle } from '../components/PageTitle'
+import { useNavigate, useParams } from 'react-router-dom'
+import { PageTitle, SplitButton } from '@commonbridge/components'
+import { getIntegration } from '../createApp'
+import { NotFound } from './NotFound'
+import IconButton from '@mui/material/IconButton'
 import LanguageIcon from '@mui/icons-material/Language'
 import FeedIcon from '@mui/icons-material/Feed'
 
-interface Integration {
-  integration: CommonBridgeIntegration
-}
+export function Integration() {
+  const navigate = useNavigate()
+  const { id } = useParams()
+  if (!id) return <NotFound title="No Integration Found" />
 
-export function Integration({ integration }: Integration) {
+  const integration = getIntegration(id)
+  if (!integration) return <NotFound title="No Integration Found" />
+
   const details = integration.getDetails()
   return (
     <>
-      <PageTitle title={details.name} backTitle="Integrations" backLink="/integrations">
+      <PageTitle title={details.name}>
         {details.description && <p>{details.description}</p>}
         {details.url && (
-          <a href={details.url} target="_blank">
+          <IconButton
+            component="a"
+            href={details.url}
+            target="_blank"
+          >
             <LanguageIcon />
-          </a>
+          </IconButton>
         )}
         {details.docsUrl && (
-          <a href={details.docsUrl} target="_blank">
+          <IconButton
+            component="a"
+            href={details.docsUrl}
+            target="_blank"
+          >
             <FeedIcon />
-          </a>
+          </IconButton>
         )}
       </PageTitle>
+      <SplitButton
+        options={[
+          { title: 'Create bridge', action: () => navigate(`/create?from=${details.id}`), hide: true },
+          { title: 'Bridge from Stripe', action: () => navigate(`/create?from=${details.id}`) },
+          { title: 'Bridge to Stripe', action: () => navigate(`/create?to=${details.id}`) },
+        ]}
+        onSelect={true}
+      />
     </>
   )
 }

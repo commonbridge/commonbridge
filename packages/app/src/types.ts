@@ -20,3 +20,8 @@ export type CreateApp = {
   integrations?: CommonBridgeIntegration[]
   plugins?: any[]
 }
+
+export type AppContextProps = {
+  integrations: CommonBridgeIntegration[] | undefined
+  plugins: any[] | undefined
+}
