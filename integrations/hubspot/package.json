@@ -22,11 +22,10 @@
     "dist"
   ],
   "scripts": {
-    "start": "rm -rf dist/* && tsc --watch",
-    "build": "rm -rf dist/* && tsc -p tsconfig.json"
+    "start": "tsc --watch",
+    "build": "rm -rf dist/* && tsc"
   },
   "dependencies": {
-    "@commonbridge/integrations": "*",
     "@hubspot/api-client": "^5.0.0"
   }
 }

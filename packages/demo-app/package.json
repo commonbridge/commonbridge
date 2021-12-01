@@ -24,10 +24,6 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "@commonbridge/app": "*",
-    "@commonbridge/integrations": "*",
-    "@commonbridge/integration-hubspot": "*",
-    "@commonbridge/integration-stripe": "*",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.1",
