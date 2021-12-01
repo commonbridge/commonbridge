@@ -35,11 +35,12 @@
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
     "stripInternal": true,
-    "target": "ESNext",
+    "target": "es5",
     "types": ["node", "jest"],
     "useDefineForClassFields": true
   },
   "exclude": [
+    "**/*.test.ts",
     "node_modules",
     "dist"
   ]
