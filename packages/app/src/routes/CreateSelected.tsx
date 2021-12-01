@@ -5,7 +5,7 @@ export function CreateSelected() {
   const { from, to } = useParams()
   return (
     <>
-      <PageTitle title="Create" />
+      <PageTitle title="Create a New Bridge" />
       <p>{from}</p>
       <p>{to}</p>
     </>

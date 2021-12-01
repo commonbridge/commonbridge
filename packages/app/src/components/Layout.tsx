@@ -112,7 +112,7 @@ const Layout = ({ routes }: { routes: any }) => {
           <List>
             <NavLink
               route={{
-                name: 'Create',
+                name: 'Create Bridge',
                 path: 'create',
                 icon: <AddCircleOutlineIcon />
               }}
