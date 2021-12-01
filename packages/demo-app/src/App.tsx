@@ -1,5 +1,5 @@
 import { createApp } from '@commonbridge/app'
-import { integrations } from './integrations'
+import { integrations } from './components/integrations'
 
 function App() {
   return createApp({
