@@ -1,7 +1,7 @@
 {
   "name": "@commonbridge/demo-app",
   "version": "0.0.1",
-  "private": false,
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/commonbridge/commonbridge",

@@ -7,6 +7,9 @@
     "url": "https://github.com/commonbridge/commonbridge",
     "directory": "packages/integrations"
   },
+  "publishConfig": {
+    "access": "restricted"
+  },
   "keywords": [
     "commonbridge",
     "common bridge"

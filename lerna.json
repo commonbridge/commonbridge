@@ -1,4 +1,9 @@
 {
+  "command": {
+    "publish": {
+      "registry": "https://npm.pkg.github.com/commonbridge"
+    }
+  },
   "npmClient": "yarn",
   "packages": [
     "integrations/*",
