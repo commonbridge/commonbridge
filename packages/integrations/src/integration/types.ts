@@ -45,16 +45,26 @@ export type CommonBridgeIntegration =
   ApiIntegration | BasicIntegration
 
 /**
- * Integration basic details.
+ * Integration base details.
  *
  * @public
  */
-export interface IntegrationDetails {
+export interface IntegrationBaseDetails {
   id: string
   name: string
   description: string
+  logo?: string
   url?: string
   docsUrl?: string
+}
+
+/**
+ * Integration details with type.
+ *
+ * @public
+ */
+export interface IntegrationDetails extends IntegrationBaseDetails {
+  type: IntegrationTypes
 }
 
 /**
@@ -62,7 +72,7 @@ export interface IntegrationDetails {
  *
  * @public
  */
-export interface BasicIntegrationConfig extends IntegrationDetails {
+export interface BasicIntegrationConfig extends IntegrationBaseDetails {
   input: any
   output: any
 }
@@ -72,7 +82,7 @@ export interface BasicIntegrationConfig extends IntegrationDetails {
  *
  * @public
  */
-export interface ApiIntegrationConfig extends IntegrationDetails {
+export interface ApiIntegrationConfig extends IntegrationBaseDetails {
   client: any
   getOptions: object[]
   putOptions: object[]

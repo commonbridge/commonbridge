@@ -4,13 +4,26 @@ import {
   BasicIntegration,
   BasicIntegrationConfig,
   IntegrationDetails,
+  IntegrationTypes,
 } from './types'
 
 /**
  * @internal
  */
 export class BasicIntegrationImpl implements BasicIntegration {
-  constructor(private readonly config: BasicIntegrationConfig) {}
+  config: BasicIntegrationConfig
+  type: IntegrationTypes
+
+  constructor({
+    config,
+    type = 'basic'
+  }: {
+    config: BasicIntegrationConfig,
+    type?: IntegrationTypes
+  }) {
+    this.config = config
+    this.type = type
+  }
 
   getId(): string {
     return this.config.id
@@ -19,8 +32,10 @@ export class BasicIntegrationImpl implements BasicIntegration {
   getDetails(): IntegrationDetails {
     return {
       id: this.config.id,
+      type: this.type,
       name: this.config.name,
       description: this.config.description,
+      logo: this.config.logo,
       url: this.config.url,
       docsUrl: this.config.docsUrl,
     }
@@ -39,7 +54,19 @@ export class BasicIntegrationImpl implements BasicIntegration {
  * @internal
  */
 export class ApiIntegrationImpl implements ApiIntegration {
-  constructor(private readonly config: ApiIntegrationConfig) {}
+  config: ApiIntegrationConfig
+  type: IntegrationTypes
+
+  constructor({
+    config,
+    type = 'api'
+  }: {
+    config: ApiIntegrationConfig,
+    type?: IntegrationTypes
+  }) {
+    this.config = config
+    this.type = type
+  }
 
   getId(): string {
     return this.config.id
@@ -48,8 +75,10 @@ export class ApiIntegrationImpl implements ApiIntegration {
   getDetails(): IntegrationDetails {
     return {
       id: this.config.id,
+      type: this.type,
       name: this.config.name,
       description: this.config.description,
+      logo: this.config.logo,
       url: this.config.url,
       docsUrl: this.config.docsUrl,
     }
@@ -75,7 +104,7 @@ export class ApiIntegrationImpl implements ApiIntegration {
  * @public
  */
 export function createBasicIntegration(config: BasicIntegrationConfig): BasicIntegration {
-  return new BasicIntegrationImpl(config)
+  return new BasicIntegrationImpl({ config })
 }
 
 /**
@@ -85,5 +114,5 @@ export function createBasicIntegration(config: BasicIntegrationConfig): BasicInt
  * @public
  */
 export function createApiIntegration(config: ApiIntegrationConfig): ApiIntegration {
-  return new ApiIntegrationImpl(config)
+  return new ApiIntegrationImpl({ config })
 }

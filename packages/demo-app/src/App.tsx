@@ -3,7 +3,9 @@ import { integrations } from './components/integrations'
 
 function App() {
   return createApp({
+    routes: [],
     integrations: integrations(),
+    plugins: [],
   })
 }
 
