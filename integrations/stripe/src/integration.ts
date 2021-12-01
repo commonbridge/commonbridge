@@ -1,14 +1,14 @@
-import { createIntegration, CommonBridgeIntegration } from '@commonbridge/integrations'
+import { createApiIntegration, ApiIntegration } from '@commonbridge/integrations'
 import Stripe from 'stripe'
 
-export const createStripeIntegration = (apiKey: string): CommonBridgeIntegration => {
-  return createIntegration({
+export const createStripeIntegration = (): ApiIntegration => {
+  return createApiIntegration({
     id: 'stripe',
-    client: new Stripe(apiKey, {
-      // @ts-ignore: Null to default to account version
-      apiVersion: null,
-    }),
+    client: Stripe,
     name: 'Stripe',
     description: '',
+    url: 'https://stripe.com/',
+    getOptions: [],
+    putOptions: [],
   })
 }

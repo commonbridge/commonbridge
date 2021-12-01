@@ -19,8 +19,8 @@
     "dist"
   ],
   "scripts": {
-    "start": "tsc --watch",
-    "build": "tsc"
+    "start": "rm -rf dist/* && tsc --watch",
+    "build": "rm -rf dist/* && tsc -p tsconfig.json"
   },
   "dependencies": {
     "@commonbridge/integrations": "*",

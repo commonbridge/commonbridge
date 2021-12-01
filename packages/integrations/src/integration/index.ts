@@ -1,5 +1,12 @@
-export { createIntegration } from './Integration'
+export {
+  createApiIntegration,
+  createBasicIntegration,
+} from './Integration'
 export type {
+  ApiIntegration,
+  ApiIntegrationConfig,
+  BasicIntegration,
+  BasicIntegrationConfig,
   CommonBridgeIntegration,
-  IntegrationConfig,
+  IntegrationTypes,
 } from './types'

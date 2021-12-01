@@ -1,11 +1,14 @@
-import { createIntegration, CommonBridgeIntegration } from '@commonbridge/integrations'
+import { createApiIntegration, ApiIntegration } from '@commonbridge/integrations'
 import hubspot from '@hubspot/api-client'
 
-export const createHubspotIntegration = (apiKey: string): CommonBridgeIntegration => {
-  return createIntegration({
+export const createHubspotIntegration = (): ApiIntegration => {
+  return createApiIntegration({
     id: 'hubspot',
-    client: new hubspot.Client({ apiKey: apiKey }),
+    client: hubspot.Client,
     name: 'Hubspot',
     description: '',
+    url: 'https://www.hubspot.com/',
+    getOptions: [],
+    putOptions: [],
   })
 }
