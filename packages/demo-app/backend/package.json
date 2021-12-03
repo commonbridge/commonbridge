@@ -1,0 +1,7 @@
+{
+  "name": "common",
+  "private": true,
+  "scripts": {
+    "start": "nodemon src/index.ts --files"
+  }
+}
