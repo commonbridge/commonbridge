@@ -1,0 +1,30 @@
+{
+  "name": "@commonbridge/integration-shopify",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/commonbridge/commonbridge",
+    "directory": "integrations/integration-shopify"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "keywords": [
+    "commonbridge",
+    "common bridge",
+    "shopify"
+  ],
+  "license": "MIT",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "tsc --watch",
+    "build": "rm -rf dist/* && tsc"
+  },
+  "dependencies": {
+    "@shopify/shopify-api": "^2.0.0"
+  }
+}
