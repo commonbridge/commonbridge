@@ -1,7 +1,7 @@
 import { createApiIntegration, ApiIntegration } from '@commonbridge/integrations'
 import hubspot from '@hubspot/api-client'
 
-export const createHubspotIntegration = (): ApiIntegration => {
+export const createIntegration = (): ApiIntegration => {
   return createApiIntegration({
     id: 'hubspot',
     client: hubspot.Client,
