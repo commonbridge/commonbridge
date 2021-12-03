@@ -1,4 +1,5 @@
 import { createContext, useContext } from 'react'
+import { Helmet, HelmetProvider } from 'react-helmet-async'
 import Router from './components/Router'
 import {
   AppContextProps,
@@ -23,14 +24,20 @@ export const createApp = ({
   plugins,
 }: CreateApp): React.ReactElement => {
   return (
-    <AppContext.Provider
-      value={{
-        integrations,
-        plugins,
-      }}
-    >
-      <Router routes={routes} />
-    </AppContext.Provider>
+    <HelmetProvider>
+      <AppContext.Provider
+        value={{
+          integrations,
+          plugins,
+        }}
+      >
+        <Helmet
+          titleTemplate="%s | Common Bridge"
+          defaultTitle="Common Bridge"
+        />
+        <Router routes={routes} />
+      </AppContext.Provider>
+    </HelmetProvider>
   )
 }
 

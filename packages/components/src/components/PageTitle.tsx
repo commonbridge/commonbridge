@@ -1,73 +1,77 @@
-import { Fragment } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
+import { Breadcrumbs } from './Breadcrumbs'
+import { Avatar } from './Avatar'
 import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
+import Stack from '@mui/material/Stack'
+import Divider from '@mui/material/Divider'
 import Typography from '@mui/material/Typography'
 
 export type PageTitleProps = {
   title: string
-  backTitle?: string
-  backLink?: string
+  description?: string
+  avatar?: boolean
+  avatarTitle?: string
+  avatarImgUrl?: string
+  noBorder?: boolean
+  buttons?: React.ReactElement
   children?: React.ReactNode
 }
 
-export const PageTitle = ({ title, children }: PageTitleProps) => {
+export const PageTitle = (props: PageTitleProps) => {
+  const { title, description, avatar, avatarTitle, avatarImgUrl, noBorder, buttons, children } = props
+
   return (
-    <Box sx={{ marginBottom: '30px' }}>
+    <>
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
       <Breadcrumbs title={title} />
-      <Typography variant="h4" component="h1" sx={{ marginTop: 0, fontWeight: 'bold' }}>
-        { title }
-      </Typography>
-      {children}
-    </Box>
-  )
-}
-
-const Breadcrumbs = ({ title }: { title: string}) => {
-  const location = useLocation().pathname
-  const paths = location.split('/')
-  paths.shift()
-
-  if (paths.length === 1 && paths[0] === '') return <></>
-
-  const links = [
-    { title: 'Dashboard', path: '/' }
-  ]
-
-  for (let i = 0; i < paths.length - 1; i++) {
-    const element = paths[i]
-
-    const allPaths = [...paths]
-
-    const thePath = allPaths.slice(0, i+1)
-
-    links.push({
-      title: element,
-      path: `/${thePath.join('/')}`
-    })
-  }
-
-  return (
-    <Typography variant="caption" component="div">
-      {links.length > 0 && links.map((link, i: number) => (
-        <Fragment key={i}>
-          <Button
-            size="small"
-            key={i}
-            to={link.path}
-            component={Link}
-          >
-            {link.title.toLocaleUpperCase()}
-          </Button>
-          {' > '}
-        </Fragment>
-      ))}
-      <Button
-        size="small"
-        disabled
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'space-between',
+          width: '100%'
+        }}
       >
-        {title.toLocaleUpperCase()}
-      </Button>
-    </Typography>
+        <Box sx={{ display: 'flex' }}>
+          {avatar && (
+            <Avatar
+              title={avatarTitle || title}
+              imgUrl={avatarImgUrl}
+              sx={{ height: '75px', fontSize: '28px', marginRight: '1rem', width: '75px' }}
+            />
+          )}
+          <Box>
+            <Typography variant="h4" component="h1" sx={{ marginTop: 0, fontWeight: 'bold' }}>
+              { title }
+            </Typography>
+            {description && (
+              <Typography variant="subtitle1" component="p">{description}</Typography>
+            )}
+            {children && (
+              <Box sx={{ marginTop: '10px' }}>
+                {children}
+              </Box>
+            )}
+          </Box>
+        </Box>
+        {buttons && (
+          <Box sx={{ marginBottom: '10px', marginLeft: '10px', marginTop: '10px', width: { xs:'100%', sm: 'auto' } }}>
+            <Stack
+              spacing={2}
+              direction={{ xs: 'column', sm: 'row' }}
+            >
+              {buttons}
+            </Stack>
+          </Box>
+        )}
+      </Box>
+      {!noBorder && (
+        <Divider
+          sx={{ marginBottom: '24px', marginTop: '24px' }}
+        />
+      )}
+    </>
   )
 }

@@ -59,7 +59,7 @@ export const SplitButton = ({ options, onSelect = false }: SplitButtonProps) => 
   return (
     <>
       <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
-        <Button onClick={handleClick}>{options[selectedIndex].title}</Button>
+        <Button onClick={handleClick} sx={{ width: '100%' }}>{options[selectedIndex].title}</Button>
         <Button
           size="small"
           aria-controls={open ? 'split-button-menu' : undefined}
