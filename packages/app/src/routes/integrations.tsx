@@ -18,7 +18,18 @@ interface Integrations {
 
 export function Integrations() {
   const integrations = getIntegrations()
-  if (!integrations) return <NotFound title="What?" />
+  if (!integrations) return <NotFound />
+
+  integrations.sort((a, b) => {
+    const aName = a.getDetails().name
+    const bName = b.getDetails().name
+
+    if (aName < bName) return -1
+
+    if (aName > bName) return 1
+
+    return 0
+  })
 
   return (
     <>
@@ -29,9 +40,9 @@ export function Integrations() {
             const details = integration.getDetails()
             return (
               <Grid item xs={12} md={6} lg={4} key={details.id}>
-                <Card variant="outlined">
-                  <CardContent>
-                    <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '16px' }}>
+                <Card variant="outlined" sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                  <CardContent sx={{ marginBottom: 'auto' }}>
+                    <Box sx={{ display: 'flex', marginBottom: '16px' }}>
                       <Avatar title={details.name} imgUrl={details.logo} sx={{height: 65, width: 65, fontSize: 25}} />
                       <Box sx={{ marginLeft: '1rem' }}>
                         <Typography sx={{ fontSize: 12 }} color="text.secondary">
@@ -47,7 +58,9 @@ export function Integrations() {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" component={Link} to={`/integrations/${details.id}`}>View {details.name}</Button>
+                    <Button variant="outlined" size="small" component={Link} to={`/integrations/${details.id}`} sx={{ width: '100%' }}>
+                      View {details.name}
+                    </Button>
                   </CardActions>
                 </Card>
               </Grid>

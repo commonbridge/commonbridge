@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import { PageTitle } from '@commonbridge/components'
+import { Container, PageTitle } from '@commonbridge/components'
 import { getIntegrations } from '../createApp'
 import InputLabel from '@mui/material/InputLabel'
 import Button from '@mui/material/Button'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
-import Grid from '@mui/material/Grid'
+import Stack from '@mui/material/Stack'
 
 export function Create() {
   const [ searchParams, setSearchParams ] = useSearchParams()
@@ -34,8 +34,8 @@ export function Create() {
     <>
       <PageTitle title="Create a New Bridge" />
       {integrations && integrations.length > 0 ? (
-        <Grid container direction="column" spacing={2}>
-          <Grid item>
+        <Container placement="left">
+          <Stack spacing={2}>
             <FormControl fullWidth variant="filled">
               <InputLabel id="bridge-from-label">Bridge from</InputLabel>
               <Select
@@ -52,8 +52,6 @@ export function Create() {
                 })}
               </Select>
             </FormControl>
-          </Grid>
-          <Grid item>
             <FormControl fullWidth variant="filled">
               <InputLabel id="bridge-to-label">Bridge to</InputLabel>
               <Select
@@ -70,13 +68,11 @@ export function Create() {
                 })}
               </Select>
             </FormControl>
-          </Grid>
-          {fromValue && toValue && (
-            <Grid item>
+            {fromValue && toValue && (
               <Button variant="contained" component={Link} to={`/create/${fromValue}~${toValue}`}>Next</Button>
-            </Grid>
-          )}
-        </Grid>
+            )}
+          </Stack>
+        </Container>
       ) : (
         <p>No integrations activated.</p>
       )}
