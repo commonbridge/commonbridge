@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Bridge {
+  id                String      @id @default(cuid())
+  fromIntegration   Integration @relation("from", fields: [fromIntegrationId], references: [id])
+  fromIntegrationId String
+  toIntegration     Integration @relation("to", fields: [toIntegrationId], references: [id])
+  toIntegrationId   String
+  action            Action?
+}
+
+model Action {
+  id       String @id @default(cuid())
+  bridge   Bridge @relation(fields: [bridgeId], references: [id])
+  bridgeId String
+}
+
+model Integration {
+  id          String   @id
+  active      Boolean  @default(false)
+  fromBridges Bridge[] @relation("from")
+  toBridges   Bridge[] @relation("to")
+}
+
+enum ActionTypes {
+  from
+  to
+}

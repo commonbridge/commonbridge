@@ -1,0 +1,37 @@
+{
+  "name": "@commonbridge/backend",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/commonbridge/commonbridge",
+    "directory": "packages/backend"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "keywords": [
+    "commonbridge",
+    "common bridge"
+  ],
+  "license": "MIT",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "tsc --watch",
+    "start:local": "nodemon src/localTest.ts --files",
+    "build": "rm -rf dist/* && tsc"
+  },
+  "dependencies": {
+    "@prisma/client": "^3.6.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "nodemon": "^2.0.15",
+    "prisma": "^3.6.0"
+  }
+}
