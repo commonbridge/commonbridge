@@ -3,8 +3,8 @@
  *
  * @public
  */
- export type CommonBridgeAuth = {
-  
+export type CommonBridgeAuth = {
+
 }
 
 /**
@@ -14,4 +14,5 @@
  */
 export type AuthConfig = {
   id: string
+  baseUrl: string
 }

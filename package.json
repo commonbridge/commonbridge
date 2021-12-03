@@ -34,9 +34,7 @@
     "regenerate-package-lock": "yarn cleanup && rm package-lock.json && yarn"
   },
   "devDependencies": {
-    "@types/jest": "^27.0.3",
     "@types/node": "^16.11.11",
-    "jest": "^27.4.2",
     "lerna": "^4.0.0",
     "ts-jest": "^27.0.7",
     "ts-node": "^10.4.0",
