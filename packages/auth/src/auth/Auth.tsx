@@ -1,26 +1,58 @@
 import {
-  CommonBridgeAuth,
-  AuthConfig
+  AuthenticationDetails,
+  AuthenticationTypes,
+  OAuthAuthentication,
+  OAuthAuthenticationConfig,
 } from './types'
 
 /**
  * @internal
  */
-export class AuthImpl implements CommonBridgeAuth {
-  constructor(private readonly config: AuthConfig) {}
+export class OAuthAuthenticationImpl implements OAuthAuthentication {
+  config: OAuthAuthenticationConfig
+  type: AuthenticationTypes
+
+  constructor({
+    config,
+    type = 'oauth'
+  }: {
+    config: OAuthAuthenticationConfig,
+    type?: AuthenticationTypes
+  }) {
+    this.config = config
+    this.type = type
+  }
 
   getId(): string {
     return this.config.id
   }
+
+  getDetails(): AuthenticationDetails {
+    return {
+      id: this.config.id,
+      type: this.type,
+      name: this.config.name,
+      description: this.config.description,
+      logo: this.config.logo,
+      url: this.config.url,
+      docsUrl: this.config.docsUrl,
+    }
+  }
+
+  getOAuthUrls() {
+    return {
+      authorizeUrl: this.config.authorizeUrl,
+      tokenUrl: this.config.tokenUrl
+    }
+  }
 }
 
-
 /**
- * Creates Common Bridge Auth from config.
+ * Creates Common Bridge API Integration from config.
  *
- * @param config - Auth configuration.
+ * @param config - Integration configuration.
  * @public
  */
-export function createAuth(config: AuthConfig): CommonBridgeAuth {
-  return new AuthImpl(config)
+export function createOAuthAuthentication(config: OAuthAuthenticationConfig): OAuthAuthentication {
+  return new OAuthAuthenticationImpl({ config })
 }

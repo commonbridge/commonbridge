@@ -22,5 +22,8 @@
   "scripts": {
     "start": "tsc --watch",
     "build": "rm -rf dist/* && tsc"
+  },
+  "dependencies": {
+    "react": "^17.0.2"
   }
 }

@@ -1,5 +1,8 @@
-export { createAuth } from './Auth'
+export { createOAuthAuthentication } from './Auth'
+export { authProviders } from './providers'
 export type {
-  AuthConfig,
-  CommonBridgeAuth,
+  AuthenticationProviders,
+  AuthInformation,
+  CommonBridgeAuthentication,
+  OAuthAuthenticationConfig,
 } from './types'
