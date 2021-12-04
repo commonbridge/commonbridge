@@ -30,9 +30,19 @@ model Integration {
   active      Boolean  @default(false)
   fromBridges Bridge[] @relation("from")
   toBridges   Bridge[] @relation("to")
+  secrets     Json?
+  data        Json?
 }
 
-enum ActionTypes {
-  from
-  to
+model AuthProvider {
+  id           String @id
+  clientId     String
+  clientSecret String
+}
+
+model User {
+  id           String  @id @default(cuid())
+  email        String  @unique
+  authProvider String?
+  authToken    String?
 }

@@ -1,6 +1,10 @@
 import express, { Request, Response, NextFunction } from 'express'
 import bodyParser from 'body-parser'
+import cors from 'cors'
+import helmet from 'helmet'
+import morgan from 'morgan'
 import process from 'process'
+import { createAuthDb } from './server/functions/auth'
 import { createRoutes } from './server/routes'
 import { GenericError } from './server/utils/error'
 import {
@@ -17,19 +21,39 @@ import {
 
 export const createBackend = ({
   port,
+  auths,
   integrations,
   plugins,
 }: CreateBackend) => {
   const PORT = port || 3001
 
+  // Add authentication providers to database
+  createAuthDb(auths)
+
+  // Initialize Express
   const app = express()
 
+  // Helmet to enhance API security
+  app.use(helmet())
+
+  // BodyParser to parse JSON bodies into JS objects
   app.use(bodyParser.json())
 
+  // CORS for all requests
+  app.use(cors())
+
+  // Morgan to log HTTP requests
+  app.use(morgan('combined'))
+
+  // Create api with all routes
   app.use('/api', createRoutes({
     integrations,
     plugins,
   }))
+
+  const server = app.listen(PORT, () => {
+    console.log(`Common Bridge app backend listening on port ${PORT}`)
+  })
 
   app.get('*', (req, _res, next) => {
     const error = new GenericError(
@@ -51,10 +75,6 @@ export const createBackend = ({
     return res.status(error.statusCode).json({ error: error.toString() })
   })
 
-  const server = app.listen(PORT, () => {
-    console.log(`Complete Bridge app backend listening on port ${PORT}`)
-  })
-
   process.on('SIGTERM', () => {
     console.log('SIGTERM signal received: closing HTTP server')
     server.close(() => {
@@ -62,5 +82,8 @@ export const createBackend = ({
     })
   })
 
-  return server
+  return {
+    app,
+    server
+  }
 }

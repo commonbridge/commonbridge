@@ -22,8 +22,6 @@ export const generateIntegrations = (integrations: AddIntegrations) => {
     addIntegration(element)
   }
 
-  router.get('/add')
-
   return router
 }
 
